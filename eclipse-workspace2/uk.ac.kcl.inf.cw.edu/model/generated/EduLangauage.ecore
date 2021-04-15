@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="eduLangauage" nsURI="http://www.ac.uk/kcl/inf/cw/edu/EduLangauage"
+    nsPrefix="eduLangauage">
+  <eClassifiers xsi:type="ecore:EClass" name="TrigoProgram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//Statement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//IntExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SideStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="command" eType="#//SideCommand"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="steps" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SideCommand">
+    <eLiterals name="adjacent" literal="adjacent"/>
+    <eLiterals name="opposite" value="1" literal="opposite"/>
+    <eLiterals name="hypotenuse" value="2" literal="hypotenuse"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TrigoStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="command" eType="#//AngleCommand"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="steps" eType="#//IntExpression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntLiteral" eSuperTypes="#//IntExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableReference" eSuperTypes="#//IntExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//VariableDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AngleCommand">
+    <eLiterals name="sin" literal="sin"/>
+    <eLiterals name="cos" value="1" literal="cos"/>
+    <eLiterals name="tan" value="2" literal="tan"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//IntExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//IntExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" upperBound="-1"
+        eType="#//IntExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//IntExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//IntExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" upperBound="-1"
+        eType="#//IntExpression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Division" eSuperTypes="#//IntExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//IntExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" upperBound="-1"
+        eType="#//IntExpression" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

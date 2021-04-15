@@ -1,0 +1,62 @@
+grammar uk.ac.kcl.inf.cw.edu.EduLangauage with org.eclipse.xtext.common.Terminals
+
+generate eduLangauage "http://www.ac.uk/kcl/inf/cw/edu/EduLangauage"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+TrigoProgram:
+	statements += Statement*
+;
+
+Statement:
+	SideStatement |
+	TrigoStatement |
+	VariableDeclaration
+;
+
+VariableDeclaration:
+	"var" name=ID "=" value=PrimaryExpression
+;
+
+SideStatement:
+	command = SideCommand "(" steps=REAL ")" "cm"
+;
+
+REAL returns ecore::EFloat hidden():
+	INT '.' INT
+;
+
+enum SideCommand:
+	adjacent="adjacent" | opposite="opposite" | hypotenuse="hypotenuse"
+;
+
+TrigoStatement:
+	command=AngleCommand "(" steps=PrimaryExpression ")"*
+;
+
+Addition returns IntExpression:
+	MultiplDivision ({Addition.left=current}'+' right += MultiplDivision)*
+;
+
+MultiplDivision returns IntExpression:
+	PrimaryExpression (({Multiplication.left = current} '*' right += PrimaryExpression) |
+		({Division.left = current} '/' right += PrimaryExpression))*
+;
+
+PrimaryExpression returns IntExpression:
+	IntLiteral |
+	VariableReference |
+	'(' Addition ')'
+;
+
+IntLiteral:
+	val=INT
+;
+
+VariableReference:
+	var=[VariableDeclaration]
+;
+
+enum AngleCommand:
+	sin | cos | tan
+;
