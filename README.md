@@ -21,3 +21,5 @@ sin(degree)
 cos(degree2)
 
 tan(degree3)
+
+The grammar file is located in uk.ac.kcl.inf.cw.edu\src\uk\ac\kcl\inf\cw\edu\EduLangauage.xtext
