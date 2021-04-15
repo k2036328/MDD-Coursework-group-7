@@ -3,6 +3,9 @@
  */
 package uk.ac.kcl.inf.cw.edu.validation
 
+import org.eclipse.xtext.validation.Check
+import uk.ac.kcl.inf.cw.edu.eduLangauage.EduLangauagePackage
+import uk.ac.kcl.inf.cw.edu.eduLangauage.VariableDeclaration
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +14,15 @@ package uk.ac.kcl.inf.cw.edu.validation
  */
 class EduLangauageValidator extends AbstractEduLangauageValidator {
 	
-//	public static val INVALID_NAME = 'invalidName'
-//
-//	@Check
-//	def checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.name.charAt(0))) {
-//			warning('Name should start with a capital', 
-//					EduLangauagePackage.Literals.GREETING__NAME,
-//					INVALID_NAME)
-//		}
-//	}
+	public static val INVALID_NAME = 'uk.ac.kcl.inf.cw.edu.INVALID_VARIABLE_NAME'
+
+	@Check
+	def checkGreetingStartsWithCapital(VariableDeclaration greeting) {
+		if (!Character.isUpperCase(greeting.name.charAt(0))) {
+			warning('Name should start with a capital', 
+					EduLangauagePackage.Literals.VARIABLE_DECLARATION__NAME,
+					INVALID_NAME)
+		}
+	}
 	
 }
